@@ -1,5 +1,5 @@
 {
-  "name": "@gridplus/react-native-crypto",
+  "name": "gridplus-react-native-crypto",
   "version": "0.0.0",
   "description": "Standard crypto functions for GridPlus SDK. For React Native users.",
   "main": "dist/index.js",
@@ -24,8 +24,5 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0"
-  },
-  "publishConfig": {
-    "registry": "https://nexus.gridpl.us/repository/npm-private/"
   }
 }
