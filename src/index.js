@@ -1,4 +1,5 @@
 const sha256 = require('./sha256.js');
+const Buffer = require('buffer/').Buffer;
 
 class ReactNativeCrypto {
 
@@ -35,15 +36,24 @@ class ReactNativeCrypto {
   }
 
   createHash () {
-    return this.hash = new sha256('SHA-256', 'TEXT');
+    this.hash = new Hash();
+    return this.hash;
+  }
+}
+
+class Hash {
+  constructor () {
+    this.hash = new sha256('SHA-256', 'TEXT');
   }
 
   update(x) {
     this.hash.update(x);
-    return this.hash.getHash('HEX');
+    return this;
   }
 
-
+  digest() {
+    return Buffer.from(this.hash.getHash('HEX'), 'hex');
+  }
 }
 
 export default ReactNativeCrypto;
