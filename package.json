@@ -1,6 +1,6 @@
 {
   "name": "gridplus-react-native-crypto",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Standard crypto functions for GridPlus SDK. For React Native users.",
   "main": "dist/index.js",
   "scripts": {

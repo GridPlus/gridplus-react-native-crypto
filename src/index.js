@@ -8,6 +8,7 @@ class ReactNativeCrypto {
     shaObj.update(e);
     this.entropy = shaObj.getHash('HEX');
     this.count = 0;
+    this.hash = null;
   }
 
   get32RandomBytes() {
@@ -33,11 +34,15 @@ class ReactNativeCrypto {
     return b.slice(0, n*2);
   }
 
-  createHash (x) {
-    const shaObj = new sha256('SHA-256', 'TEXT');
-    shaObj.update(x);
-    return shaObj.getHash('HEX');
+  createHash () {
+    return this.hash = new sha256('SHA-256', 'TEXT');
   }
+
+  update(x) {
+    this.hash.update(x);
+    return this.hash.getHash('HEX');
+  }
+
 
 }
 
