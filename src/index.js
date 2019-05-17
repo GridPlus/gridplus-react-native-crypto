@@ -43,7 +43,7 @@ class ReactNativeCrypto {
 
 class Hash {
   constructor () {
-    this.hash = new sha256('SHA-256', 'TEXT');
+    this.hash = new sha256('SHA-256', 'ARRAYBUFFER');
   }
 
   update(x) {
