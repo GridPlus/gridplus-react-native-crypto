@@ -1,5 +1,6 @@
 const sha256 = require('./sha256.js');
 const Buffer = require('buffer/').Buffer;
+const hash = require('hash.js');
 
 class ReactNativeCrypto {
 
@@ -14,7 +15,7 @@ class ReactNativeCrypto {
 
   get32RandomBytes() {
     const shaObj = new sha256('SHA-256', 'TEXT');
-    const r = this.createHash(String(this.count * new Date().getTime()));
+    const r = this.createHash('sha256').update(String(this.count * new Date().getTime())).digest().toString('hex');
     shaObj.update(`${this.entropy}${r}`);
     this.count += 1;
     return shaObj.getHash('HEX');
@@ -35,15 +36,25 @@ class ReactNativeCrypto {
     return b.slice(0, n*2);
   }
 
-  createHash () {
-    this.hash = new Hash();
+  createHash (type) {
+    this.hash = new Hash(type);
     return this.hash;
   }
 }
 
 class Hash {
-  constructor () {
-    this.hash = new sha256('SHA-256', 'ARRAYBUFFER');
+  constructor (type) {
+    switch (type) {
+      case 'sha256':
+        this.hash = new hash.sha256;
+        break;
+      case 'rmd160':
+        this.hash = new hash.ripemd160;
+        break;
+      default:
+        throw new Error('Unsupported hash type');
+        break;
+    }
   }
 
   update(x) {
@@ -52,7 +63,7 @@ class Hash {
   }
 
   digest() {
-    return Buffer.from(this.hash.getHash('HEX'), 'hex');
+    return Buffer.from(this.hash.digest('hex'), 'hex');
   }
 }
 

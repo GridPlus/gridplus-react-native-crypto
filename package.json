@@ -1,6 +1,6 @@
 {
   "name": "gridplus-react-native-crypto",
-  "version": "0.0.7",
+  "version": "0.0.12",
   "description": "Standard crypto functions for GridPlus SDK. For React Native users.",
   "main": "dist/index.js",
   "scripts": {
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/GridPlus/gridplus-react-native-crypto#readme",
   "dependencies": {
-    "buffer": "^5.2.1"
+    "buffer": "^5.2.1",
+    "hash.js": "^1.1.7"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
